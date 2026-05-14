@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self';">
+  <title>番茄钟</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="titlebar" id="titlebar">
+    <span class="titlebar-title">番茄钟</span>
+    <div class="titlebar-actions">
+      <button class="titlebar-btn" id="minimizeBtn">&#x2212;</button>
+      <button class="titlebar-btn titlebar-btn-close" id="closeBtn">&#x00D7;</button>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="status-label" id="statusLabel">准备开始</div>
+
+    <div class="timer-ring-wrapper">
+      <svg class="timer-ring" viewBox="0 0 200 200">
+        <circle class="ring-bg" cx="100" cy="100" r="90" />
+        <circle class="ring-progress" id="ringProgress" cx="100" cy="100" r="90" />
+      </svg>
+      <div class="timer-display" id="timerDisplay">25:00</div>
+    </div>
+
+    <div class="controls">
+      <button class="btn btn-secondary" id="resetBtn">重置</button>
+      <button class="btn btn-primary" id="startBtn">开始</button>
+    </div>
+
+    <div class="task-section">
+      <div class="task-header">
+        <span class="task-header-title">任务</span>
+        <button class="task-add-btn" id="addTaskBtn">+</button>
+      </div>
+      <div class="no-task-hint" id="noTaskHint">请先选择任务</div>
+      <div class="empty-list-hint hidden" id="emptyListHint">点击 + 添加第一个任务</div>
+      <div class="task-list" id="taskList"></div>
+    </div>
+
+    <div class="stats" id="stats">
+      <span class="stats-count" id="todayCount">0</span>
+      <span class="stats-label">今日番茄</span>
+    </div>
+  </div>
+
+  <!-- Task Edit Dialog -->
+  <div class="dialog-overlay hidden" id="dialogOverlay">
+    <div class="dialog-card">
+      <h3 class="dialog-title" id="dialogTitle">新建任务</h3>
+      <form id="taskForm">
+        <div class="form-field">
+          <label for="taskNameInput">任务名称</label>
+          <input type="text" id="taskNameInput" placeholder="输入任务名称" maxlength="50" required>
+        </div>
+        <div class="form-row">
+          <div class="form-field">
+            <label for="workMinutesInput">工作(分)</label>
+            <input type="number" id="workMinutesInput" min="1" max="120" value="25">
+          </div>
+          <div class="form-field">
+            <label for="shortBreakInput">短休息(分)</label>
+            <input type="number" id="shortBreakInput" min="1" max="30" value="5">
+          </div>
+          <div class="form-field">
+            <label for="longBreakInput">长休息(分)</label>
+            <input type="number" id="longBreakInput" min="1" max="60" value="15">
+          </div>
+        </div>
+        <div class="dialog-actions">
+          <button type="button" class="btn btn-danger hidden" id="dialogDeleteBtn">删除</button>
+          <button type="button" class="btn btn-secondary" id="dialogCancelBtn">取消</button>
+          <button type="submit" class="btn btn-primary">保存</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Close Confirmation Dialog -->
+  <div class="dialog-overlay hidden" id="closeDialogOverlay">
+    <div class="dialog-card close-dialog-card">
+      <p class="close-dialog-text">确定要关闭番茄钟吗？</p>
+      <div class="dialog-actions">
+        <button class="btn btn-secondary" id="closeDialogMinimize">最小化</button>
+        <button class="btn btn-danger" id="closeDialogConfirm">确认关闭</button>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>
