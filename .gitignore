@@ -1,0 +1,4 @@
+node_modules/
+dist/
+pomodoro-data.json
+pomodoro-data.json.bak
