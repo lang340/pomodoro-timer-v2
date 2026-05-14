@@ -1,0 +1,21 @@
+{
+  "name": "pomodoro-timer",
+  "version": "1.0.0",
+  "description": "Portable Pomodoro Timer for Windows",
+  "main": "main.js",
+  "scripts": {
+    "start": "node start.js",
+    "build": "electron-builder --win portable"
+  },
+  "keywords": [
+    "pomodoro",
+    "timer",
+    "productivity"
+  ],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "^28.3.3",
+    "electron-builder": "^26.0.0"
+  }
+}
